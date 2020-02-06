@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       passwords: 'customers/passwords'
     }
   end
-  resources :customers, only: [:show,:edot,:update]
+  resources :customers, only: [:show,:edit,:update]
   get 'customers/:id/withdraw' => 'customers#withdraw'
   patch 'customers/:id/withdraw' => 'customers#status_change'
 end
