@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
 
 
-	belongs_to customer
+	belongs_to :customer
 
 	validates :payment, presence: true
 	validates :freight, presence: true
