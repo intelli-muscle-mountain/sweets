@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
+
 	has_many :order_item, dependent: :destroy
-	belong_to :customer
+	belongs_to :customer
 
 	validates :payment, presence: true
 	validates :freight, presence: true
