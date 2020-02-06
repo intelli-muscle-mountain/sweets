@@ -10,10 +10,6 @@ Rails.application.routes.draw do
   get 'orders/confirm' => 'orders#confirm'
   get 'orders/thanks' => 'orders#thanks'
 
-  resources :customers, only: [:show,:edot,:update]
-  get 'customers/:id/withdraw' => 'customers#withdraw'
-  patch 'customers/:id/withdraw' => 'customers#status_change'
-
   resources :addresses, only: [:index,:create,:edit,:update,:destroy]
 
 
@@ -25,7 +21,7 @@ Rails.application.routes.draw do
   	resources :customers, only: [:index,:show,:edit,:update]
 	resources :orders, only: [:index,:show,:update]
   end
-  
+
    devise_for :admins, controllers: {
       sessions: 'admins/sessions',
       registrations: 'admins/registrations',
@@ -39,4 +35,7 @@ Rails.application.routes.draw do
       passwords: 'customers/passwords'
     }
   end
+  resources :customers, only: [:show,:edot,:update]
+  get 'customers/:id/withdraw' => 'customers#withdraw'
+  patch 'customers/:id/withdraw' => 'customers#status_change'
 end
