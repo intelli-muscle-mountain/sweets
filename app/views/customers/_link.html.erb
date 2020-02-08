@@ -1,0 +1,30 @@
+<header>
+      <a class="nav navbar-nav navbar-left">ながのCAKE</a>
+
+   <% if costomer_signed_in? %>
+    <li class="cartitem">
+      <%= link_to 'Cart', cartiems_path %></li>
+    <li class="mypage">
+      <%= link_to 'My page', customer_path(current_user.id) %></li>
+    <li class="about">
+      <%= link_to 'About', about_path %></li>
+    <li class="logout">
+      <%= link_to " Log out", destroy_customer_session_path, method: :delete %></li>
+
+
+    <% else %>
+      <li class="cart">
+        <%= link_to 'Cart', cartiems_path %></li>
+      <li class="mypage">
+        <%= link_to 'My page', customer_path(current_user.id) %></li>
+      <li class="about">
+        <%= link_to "About", about_path %></li>
+      <li class="login">
+        <%= link_to "Log in", new_customer_session %></li>
+         <li class="signup">
+       <%= link_to "Sign up", new_customer_registration %></li>
+
+
+    <% end %>
+
+  </header>
