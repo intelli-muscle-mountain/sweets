@@ -1,7 +1,8 @@
 <header>
-      <a class="nav navbar-nav navbar-left">ながのCAKE</a>
+      <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', root_path %></a>
 
    <% if customer_signed_in? %>
+
     <li class="cartitem">
       <%= link_to 'Cart', cartitems_path %></li>
     <li class="mypage">
