@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-# root 'items#top'
+  root 'items#top'
   get 'about' => 'items#about'
   resources :items, only: [:index,:show]
   resources :cartitems, only: [:index,:create,:update,:destroy]
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       passwords: 'customers/passwords'
     }
   end
-  resources :customers, only: [:show,:edot,:update]
+  resources :customers, only: [:show,:edit,:update]
   get 'customers/:id/withdraw' => 'customers#withdraw'
   patch 'customers/:id/withdraw' => 'customers#status_change'
 end
