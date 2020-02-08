@@ -1,1 +1,13 @@
 <%= render'admins/items/link' %>
+
+<div class="container">
+	<h2 class="genre-headline">ジャンル編集画面</h2>
+
+	<%= form_for (@genre) do |f| %>
+	<p>ジャンル</p>
+    <%= f.text_field :genre_name %>
+	<input type="radio" name="status" value="valid">有効
+	<input type="radio" name="status" value="invalid">無効
+	<%= f.submit "変更を保存する",class: "btn btn-primary" %>
+	<% end %>
+</div>

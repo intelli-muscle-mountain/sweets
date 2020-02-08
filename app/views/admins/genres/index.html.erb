@@ -2,13 +2,14 @@
 
 <div class="container">
 	<h2 class="genre-headline">ジャンル追加・一覧画面</h2>
-	<%= form_for(@genre) do |f| %>
+
+	<%= form_for (@genre, url: admins_genres) do |f| %>
 	<p>ジャンル</p>
     <%= f.text_field :genre_name %>
-	<% end %>
 	<input type="radio" name="status" value="valid">有効
 	<input type="radio" name="status" value="invalid">無効
-	<%= f.submit '追加',class: "btn btn-primary" %>
+	<%= f.submit "追加",class: "btn btn-primary" %>
+	<% end %>
 
 	<table>
 		<tr>
@@ -16,9 +17,9 @@
 			<th>状態</th>　
 		</tr>
 		<tr>
-			<tb>ケーキ</tb>
-			<tb>有効</tb>
-			<tb><%= link_to "編集する", , class: "btn-sm btn-success" %></tb>
+			<th>ケーキ</th>
+			<th>有効</th>
+			<th><%= link_to "編集する", "#", class: "btn-sm btn-success" %></th>
 		</tr>
 	</table>
 </div>
