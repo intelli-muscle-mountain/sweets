@@ -10,7 +10,6 @@
 	    <%= f.label :genre_status, "有効" %>
 	    <%= f.radio_button :genre_status, :false %>
 	    <%= f.label :genre_status, "無効" %>
-
 		<%= f.submit "追加",class: "btn btn-primary" %>
 	<% end %>
 
@@ -19,12 +18,12 @@
 			<th>ジャンル</th>
 			<th>状態</th>
 		</tr>
-		<tr>
-			<% @genres.each do |genre| %>
-			<th><%= genre.genre_name %></th>
-			<th><%= genre.genre_status %></th>
-			<th><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn-sm btn-success" %></th>
-			<% end %>
-		</tr>
+			<tr>
+				<% @genres.each do |genre| %>
+					<th><%= genre.genre_name %></th>
+					<th><%= genre.genre_status %></th> 
+					<th><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn-sm btn-success" %></th>
+				<% end %>
+			</tr>
 	</table>
 </div>
