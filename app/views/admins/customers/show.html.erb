@@ -1,9 +1,20 @@
+<%= render'admins/link' %>
+
 <div class="container">
 	<h2>会員詳細画面</h2>
 	<table>
 		<tr>
 			<td>顧客ID</td>
-			<td><%= @customer.id %><span>有効会員</span></td>
+			<td>
+				<%= @customer.id %>
+				<span>
+					<% if @customer.customer_status == true %>
+						有効会員
+					<% else %>
+						無効会員
+					<% end %>
+				</span>
+			</td>
 		</tr>
 		<tr>
 			<td>氏名</td>
