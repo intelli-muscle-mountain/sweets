@@ -20,9 +20,11 @@
 			<th>状態</th>
 		</tr>
 		<tr>
-			<th>ケーキ</th>
-			<th>有効</th>
-			<th><%= link_to "編集する", "#", class: "btn-sm btn-success" %></th>
+			<% @genres.each do |genre| %>
+			<th><%= genre.genre_name %></th>
+			<th><%= genre.genre_status %></th>
+			<th><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn-sm btn-success" %></th>
+			<% end %>
 		</tr>
 	</table>
 </div>
