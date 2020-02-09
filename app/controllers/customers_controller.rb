@@ -17,6 +17,7 @@ class CustomersController < ApplicationController
 	end
 
 	def withdraw
+		@customer = Customer.find(params[:id])
 	end
 
 	def status_change

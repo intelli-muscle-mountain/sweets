@@ -36,6 +36,6 @@ Rails.application.routes.draw do
     }
   end
   resources :customers, only: [:show,:edit,:update]
-  get 'customers/:id/withdraw' => 'customers#withdraw'
+  get 'customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
   patch 'customers/:id/withdraw' => 'customers#status_change'
 end
