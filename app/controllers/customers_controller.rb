@@ -22,7 +22,6 @@ class CustomersController < ApplicationController
 
 	def status_change
 		customer = Customer.find(params[:id])
-		customer.customer_status = false
 		customer.update(customer_params)
 		redirect_to root_path
 	end
