@@ -1,7 +1,7 @@
 
 <header>
        <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', root_path %></a>
-
+<ul class="nav pull-right nav-pills">
     <% if admin_signed_in? %>
        <li class="item">
         <%= link_to '商品一覧', items_path %></li>
@@ -11,6 +11,7 @@
         <%= link_to "注文履歴一覧", admins_orders_path %></li>
       <li class="genre">
         <%= link_to "ジャンル管理	", admins_genres_path %></li>
+      </ul>
     <% end %>
 
 </header>
