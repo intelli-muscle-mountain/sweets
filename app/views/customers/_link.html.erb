@@ -1,5 +1,6 @@
 <header>
       <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', root_path %></a>
+   <ul class="nav pull-right nav-pills">
 
    <% if customer_signed_in? %>
 
@@ -23,7 +24,7 @@
          <li class="signup">
        <%= link_to "Sign up", new_customer_registration_path %></li>
 
-
+     </ul>
     <% end %>
 
   </header>
