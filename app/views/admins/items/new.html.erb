@@ -2,7 +2,9 @@
 
 <div class="container">
 	<h2>商品　新規登録</h2>
-	<%= form_for(@item) do |f| %>
+	<%= form_for(@item, url:admins_items_path(@item),method: :post) do |f| %>
+
+	<%= f.attachment_field :image %>
 
 	<h4>商品名</h4>
 	<%= f.text_field :name %>
