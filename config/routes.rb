@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 	  resources :orders, only: [:index,:show,:update]
   end
 
-   devise_for :admins, controllers: {
+  devise_for :admins, controllers: {
       sessions: 'admins/sessions',
       registrations: 'admins/registrations',
       passwords: 'admins/passwords'
