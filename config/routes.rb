@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   resources :customers, only: [:show,:edit,:update] do
     member do
       get :withdraw
-      patch 'withdraw' => 'customers#status_change'
+      patch 'status_change' => 'customers#status_change'
     end
   end
 end
