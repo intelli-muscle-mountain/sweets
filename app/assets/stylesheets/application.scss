@@ -16,7 +16,35 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 header {
 	font-size: 20px;
 	margin-top: 18px;
 }
+
+.container {
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.customer-tr {
+	height: 50px;
+}
+
+.customer-show-status {
+	color: #000;
+	margin-left: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #000
+}
+
+.customer-show-btn {
+	margin-left: 10px;
+}
+
