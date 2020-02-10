@@ -10,9 +10,6 @@
 		</p>
 		<%= link_to "退会しない", customer_path(@customer) %>
 
-		<%= form_for(@customer, url:withdraw_customer_path(@customer)) do |f| %>
-			<%= f.hidden_field :customer_status, value: false %>
-			<%= f.submit "退会する"%>
-		<% end %>
+		<%= button_to "退会する", status_change_customer_path(@customer), {method: :patch, params: {customer_status: "false"}} %>
 	</div>
 </div>
