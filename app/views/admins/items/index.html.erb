@@ -11,13 +11,20 @@
 				<th>ジャンル</th>
 				<th>ステータス</th>
 			</tr>
+			<% @items.each do |item| %>
 			<tr>
-				<td>1</td>
-				<td>ケーキ</td>
-				<td>1,200</td>
-				<td>ケーキ</td>
-				<td>配送中</td>
+				<td><%= item.id %></td>
+				<td><%= item.name %></td>
+				<td><%= item.price %></td>
+				<td><%= item.genre.genre_name %></td>
+				<td><% if item.sale_status == true %>
+					販売中
+				    <% else %>
+					売切れ
+					<% end %>
+					</td>
 			</tr>
+			<% end %>
 		</table>
 
 	</div>

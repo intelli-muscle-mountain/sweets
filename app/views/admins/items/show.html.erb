@@ -5,4 +5,15 @@
 	
 	<%= attachment_image_tag @item, :image, :fill,100,100,format:'jpeg' %>
 
-	
+	<h4>商品名<%= @item.name %><h4>
+	<h4>商品説明<%= @item.description %><h4>
+	<h4>ジャンル<%= @item.genre.genre_name %></h4>
+	<h4>税込価格（税抜価格）<%= @item.price %><h4>
+	<h4>販売ステータス
+		<% if @item.sale_status == true %>
+			販売中
+		<% else %>
+			売切れ
+		<% end %>
+	</h4>
+</div>
