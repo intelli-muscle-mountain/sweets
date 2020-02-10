@@ -27,6 +27,7 @@ class Admins::GenresController < ApplicationController
     	redirect_back(fallback_location: edit_admins_genre_path)
 	end
 	end
+	
 	def show
 	end
 
