@@ -24,8 +24,10 @@ class Admins::GenresController < ApplicationController
   	if  @genre.update(genre_params)
     	redirect_to admins_genres_path
   	else
-    	render "edit"
+    	redirect_back(fallback_location: edit_admins_genre_path)
 	end
+	end
+	def show
 	end
 
 
