@@ -1,43 +1,48 @@
 <%= render'customers/link' %>
 
 <div class="container">
-	<h1>マイページ</h1>
-	<h2>登録情報編集</h2>
-	<%= link_to "退会する", withdraw_customer_path(@customer) %>
-
-	<%= form_for(@customer) do |f| %>
-		<table>
-			<tr>
-				<td>氏名</td>
-				<td>
-					<%= f.text_field :last_name %>
-					<%= f.text_field :first_name %>
-				</td>
-			</tr>
-			<tr>
-				<td>カナ</td>
-				<td>
-					<%= f.text_field :last_name_kana %>
-					<%= f.text_field :first_name_kana %>
-				</td>
-			</tr>
-			<tr>
-				<td>郵便番号</td>
-				<td><%= f.text_field :postal_code %></td>
-			</tr>
-			<tr>
-				<td>住所</td>
-				<td><%= f.text_area :address %></td>
-			</tr>
-			<tr>
-				<td>電話番号</td>
-				<td><%= f.text_field :phone_number %></td>
-			</tr>
-			<tr>
-				<td>メールアドレス</td>
-				<td><%= f.text_field :email %></td>
-			</tr>
-		</table>
-		<%= f.submit "編集内容を保存する" %>
-	<% end %>
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="row">
+				<p class="col-xs-3" style="font-size:20px;">登録情報編集</p>
+				<%= link_to "退会する", withdraw_customer_path(@customer), class:"col-xs-2 btn btn-danger customer-show-btn" %>
+			</div>
+			<%= form_for(@customer) do |f| %>
+				<table class="table table-bordered">
+					<tr>
+						<td class="active">氏名</td>
+						<td>
+							<%= f.text_field :last_name %>
+							<%= f.text_field :first_name %>
+						</td>
+					</tr>
+					<tr>
+						<td class="active">カナ</td>
+						<td>
+							<%= f.text_field :last_name_kana %>
+							<%= f.text_field :first_name_kana %>
+						</td>
+					</tr>
+					<tr>
+						<td class="active">郵便番号</td>
+						<td><%= f.text_field :postal_code %></td>
+					</tr>
+					<tr>
+						<td class="active">住所</td>
+						<td><%= f.text_area :address, :size=>"60x1" %></td>
+					</tr>
+					<tr>
+						<td class="active">電話番号</td>
+						<td><%= f.text_field :phone_number %></td>
+					</tr>
+					<tr>
+						<td class="active">メールアドレス</td>
+						<td><%= f.text_field :email %></td>
+					</tr>
+				</table>
+				<%= f.submit "編集内容を保存する", class:"col-xs-4 col-xs-offset-4 btn btn-primary" %>
+			<% end %>
+		</div>
+		<div class="col-xs-4"></div>
+	</div>
 </div>
