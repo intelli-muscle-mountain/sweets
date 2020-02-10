@@ -1,4 +1,5 @@
 class Admins::ItemsController < ApplicationController
+
 	def top
 	end
 	
@@ -15,9 +16,9 @@ class Admins::ItemsController < ApplicationController
 	end
 
 	def create
-		@item = Item.new
+		@item = Item.new(item_params)
 		@item.save
-		redirect_to admins_item_path
+		redirect_to admins_item_path(@item)
 	end
 
 	def edit
