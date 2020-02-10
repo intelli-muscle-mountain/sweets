@@ -2,45 +2,49 @@
 
 <div class="container">
 	<h2>会員詳細画面</h2>
-	<table>
-		<tr>
-			<td>顧客ID</td>
-			<td>
-				<%= @customer.id %>
-				<span>
-					<% if @customer.customer_status == true %>
-						有効会員
-					<% else %>
-						無効会員
-					<% end %>
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td>氏名</td>
-			<td><%= @customer.last_name + " " + @customer.first_name %></td>
-		</tr>
-		<tr>
-			<td>フリガナ</td>
-			<td><%= @customer.last_name_kana + " " + @customer.first_name_kana %></td>
-		</tr>
-		<tr>
-			<td>郵便番号</td>
-			<td><%= @customer.postal_code %></td>
-		</tr>
-		<tr>
-			<td>住所</td>
-			<td><%= @customer.address %></td>
-		</tr>
-		<tr>
-			<td>電話番号</td>
-			<td><%= @customer.phone_number %></td>
-		</tr>
-		<tr>
-			<td>メールアドレス</td>
-			<td><%= @customer.email %></td>
-		</tr>
-	</table>
-	<%= link_to "編集する",  edit_admins_customer_path(@customer.id) %>
-	<%= link_to "注文履歴一覧を見る",  admins_order_path %>
+	<div class="row">
+		<div class="col-xs-8">
+			<table>
+				<tr class="customer-tr">
+					<td class="col-xs-4">会員ID</td>
+					<td class="col-xs-8">
+						<%= @customer.id %>
+						<span class="bg-info customer-show-status">
+							<% if @customer.customer_status == true %>
+								有効会員
+							<% else %>
+								無効会員
+							<% end %>
+						</span>
+					</td>
+				</tr>
+				<tr class="customer-tr">
+					<td class="col-xs-4">氏名</td>
+					<td class="col-xs-8"><%= @customer.last_name + " " + @customer.first_name %></td>
+				</tr>
+				<tr class="customer-tr">
+					<td class="col-xs-4">フリガナ</td>
+					<td class="col-xs-8"><%= @customer.last_name_kana + " " + @customer.first_name_kana %></td>
+				</tr>
+				<tr class="customer-tr">
+					<td class="col-xs-4">郵便番号</td>
+					<td class="col-xs-8"><%= @customer.postal_code %></td>
+				</tr>
+				<tr class="customer-tr">
+					<td class="col-xs-4">住所</td>
+					<td class="col-xs-8"><%= @customer.address %></td>
+				</tr>
+				<tr class="customer-tr">
+					<td class="col-xs-4">電話番号</td>
+					<td class="col-xs-8"><%= @customer.phone_number %></td>
+				</tr>
+				<tr class="customer-tr">
+					<td class="col-xs-4">メールアドレス</td>
+					<td class="col-xs-8"><%= @customer.email %></td>
+				</tr>
+			</table>
+			<%= link_to "編集する",  edit_admins_customer_path(@customer.id), class:"btn btn-primary" %>
+			<%= link_to "注文履歴一覧を見る",  admins_order_path, class:"btn btn-primary customer-show-btn" %>
+		</div>
+	</div>
 </div>
