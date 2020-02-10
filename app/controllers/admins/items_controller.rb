@@ -10,11 +10,11 @@ class Admins::ItemsController < ApplicationController
 
 	def new
 		@item = Item.new
+		@genres = Genre.all
 	end
 
 	def create
 		@item = Item.new
-		
 	end
 
 	def edit
