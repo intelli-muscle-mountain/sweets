@@ -21,7 +21,12 @@
 			<tr>
 				<% @genres.each do |genre| %>
 					<th><%= genre.genre_name %></th>
-					<th><%= genre.genre_status %></th> 
+					<th><% if genre.genre_status == true %>
+						有効
+						<% else %>
+						無効
+						<% end %>
+					</th> 
 					<th><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn-sm btn-success" %></th>
 				<% end %>
 			</tr>

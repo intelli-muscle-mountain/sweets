@@ -3,7 +3,7 @@
 <main>
 	<div class="container">
 		<h2 class="item-headline">商品一覧</h2>
-		<table>
+		 <table>
 			<tr>
 				<th>商品ID</th>
 				<th>商品名</th>
@@ -11,10 +11,10 @@
 				<th>ジャンル</th>
 				<th>ステータス</th>
 			</tr>
-			<% @items.each do |item| %>
-			<tr>
+		   <% @items.each do |item| %>
+			 <tr>
 				<td><%= item.id %></td>
-				<td><%= item.name %></td>
+				<td><%= link_to item.name, admins_item_path(item) %></td>
 				<td><%= item.price %></td>
 				<td><%= item.genre.genre_name %></td>
 				<td><% if item.sale_status == true %>
@@ -22,10 +22,10 @@
 				    <% else %>
 					売切れ
 					<% end %>
-					</td>
-			</tr>
-			<% end %>
-		</table>
+				</td>
+			 </tr>
+		   <% end %>
+		 </table>
 
 	</div>
 </main>
