@@ -1,0 +1,28 @@
+
+<%= render'customers/link' %>
+	<div class="container">
+		<h2>ショッピングカート</h2>
+
+		<table>
+			  <tr>
+					<th>商品名</th>
+					<th>単価（税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th> </th>
+			  </tr>
+	        <% @cartitems.each do |cartitem| %>
+				 <tr>
+					<td><%= cartitem.item.name %>
+						<%= attachment_image_tag item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
+					 <td><%= cartitem.item.price *1.1 %></td>
+					 <td><%= cartitem.quantity %></td>
+					 <td><%= cartitem.item.price *1.1 *cartitem.quantity %></td>
+					 <td><%= link_to "削除する",cartitem_path(cartitem), method: :delete, class: "btn btn-danger" %></td>
+			 </tr>
+		 </table>
+
+		<% end %>
+
+	<%= link_to '買い物を続ける', root_path, :class => 'btn btn-primary' %>
+</div>
