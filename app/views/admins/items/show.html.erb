@@ -1,22 +1,45 @@
-
+<%= render'admins/link' %>
 
 <div class="container">
 	<h2>商品詳細</h2>
-	
-	 <%= attachment_image_tag @item, :image,:fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+	<div class="row">
+		 <%= attachment_image_tag @item, :image,:fill, 60, 60, format: 'jpeg', class: "col-xs-2 col-xs-offset-1 pull-left profile-img", fallback: "no_image.jpg" %>
 
+		<div class="col-xs-6">
+			<div class="row admin-item-show">
+				<h4 class="col-xs-3">商品名</h4>
+				<h4 class="col-xs-6"><%= @item.name %></h4>
+			</div>
 
-	<h4>商品名<%= @item.name %><h4>
-	<h4>商品説明<%= @item.description %><h4>
-	<h4>ジャンル<%= @item.genre.genre_name %></h4>
-	<h4>税込価格（税抜価格）<%= @item.price %><h4>
-	<h4>販売ステータス
-		<% if @item.sale_status == true %>
-			販売中
-		<% else %>
-			売切れ
-		<% end %>
-	</h4>
-	<%= link_to "編集する", edit_admins_item_path,class: "btn-sm btn-primary" %>
+			<div class="row admin-item-show">
+				<h4 class="col-xs-3">商品説明</h4>
+				<h4 class="col-xs-6"><%= @item.description %></h4>
+			</div>
+
+			<div class="row admin-item-show">
+				<h4 class="col-xs-3">ジャンル</h4>
+				<h4 class="col-xs-6"><%= @item.genre.genre_name %></h4>
+			</div>
+
+			<div class="row admin-item-show">
+				<h4 class="col-xs-5">税込価格（税抜価格）</h4>
+				<h4 class="col-xs-6"><%= @item_tax.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</h4>
+			</div>
+
+			<div class="row">
+				<h4 class="col-xs-4">販売ステータス</h4>
+				<h4 class="col-xs-6">
+					<% if @item.sale_status == true %>
+						販売中
+					<% else %>
+						売切れ
+					<% end %>
+				</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row admin-item-show-btn">
+		<%= link_to "編集する", edit_admins_item_path,class: "col-xs-2 col-xs-offset-9 btn btn-primary" %>
+	</div>
 
 </div>

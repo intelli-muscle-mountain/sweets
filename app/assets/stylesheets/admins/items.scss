@@ -1,3 +1,36 @@
 // Place all the styles related to the admins/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.admin-item-head {
+	position: relative;
+}
+
+.admin-item-btn {
+	position: absolute;
+	top: 20px;
+	right: 100px;
+	background-color: #ccc;
+	width: 35px;
+	height: 35px;
+	padding: 10px;
+	border-radius: 50%;
+	box-shadow: 0 4px rgba(0,0,0,0.6);
+}
+
+.admin-item-btn:hover {
+	opacity:0.6;
+}
+
+.admin-item-btn:active {
+	box-shadow: none;
+	top: 24px;
+}
+
+.admin-item-show {
+	margin-bottom: 30px;
+}
+
+.admin-item-show-btn {
+	padding :80px 0;
+}
