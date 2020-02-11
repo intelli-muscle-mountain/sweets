@@ -1,26 +1,44 @@
 <%= render'admins/link' %>
 
 <div class="container">
-	<h2>商品　新規登録</h2>
+	<h2>商品 新規登録</h2>
 	<%= form_for(@item, url:admins_items_path(@item),method: :post) do |f| %>
+		<div class="row">
 
-	<%= f.attachment_field :image %>
+			<div class="col-xs-4" style="margin-top: 100px;">
+				<%= f.attachment_field :image %>
+			</div>
 
-	<h4>商品名</h4>
-	<%= f.text_field :name %>
+			<div class="col-xs-8">
+				<div class="row admin-item">
+					<%= f.label :name, "商品名", class:"col-xs-2" %>
+					<%= f.text_field :name, class:"col-xs-4" %>
+				</div>
 
-	<h4>商品説明</h4>
-	<%= f.text_area :description %>
+				<div class="row admin-item">
+					<%= f.label :description, "商品説明", class:"col-xs-2" %>
+					<%= f.text_area :description, class:"col-xs-4" %>
+				</div>
 
-	<h4>ジャンル</h4>
-	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+				<div class="row admin-item">
+					<%= f.label :genre_id, "ジャンル", class:"col-xs-2" %>
+					<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, class:"col-xs-4" %>
+				</div>
 
-	<h4>税別価格</h4>
-	<%= f.number_field :price %>円
+				<div class="row admin-item">
+					<%= f.label :price, "税別価格", class:"col-xs-2" %>
+					<%= f.number_field :price, class:"col-xs-4" %>円
+				</div>
 
-	<h4>販売ステータス</h4>
-	<%= f.select :sale_status, [["販売中", "true"], ["売切れ", "false"]], :include_blank => "--選択してください--" %>
-	<%= f.submit "新規登録" %>
+				<div class="row admin-item">
+					<%= f.label :sale_status, "販売ステータス", class:"col-xs-2" %>
+					<%= f.select :sale_status, [["販売中", "true"], ["売切れ", "false"]], :include_blank => "--選択してください--", class:"col-xs-4" %>
+				</div>
+			</div>
+		</div>
+		<div class="row admin-item-show-btn">
+			<%= f.submit "新規登録", class:"col-xs-2 col-xs-offset-8 btn btn-primary" %>
+		</div>
 	<% end %>
 </div>
 
