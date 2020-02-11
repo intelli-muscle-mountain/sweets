@@ -1,3 +1,23 @@
 // Place all the styles related to the admins/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.customer-tr {
+	height: 50px;
+}
+
+.customer-show-status {
+	color: #000;
+	margin-left: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #000
+}
+
+.customer-btn {
+	margin-left: 10px;
+}
+
+.withdraw {
+	padding: 150px 0;
+}
