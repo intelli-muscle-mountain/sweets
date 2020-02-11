@@ -13,11 +13,11 @@
 			  </tr>
 	        <% @cartitems.each do |cartitem| %>
 				 <tr>
-					<td><%= cartitem.item.name %>
-						<%= attachment_image_tag item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
-					 <td><%= cartitem.item.price *1.1 %></td>
+					<td><%= cartitem.item.name %></td>
+						<td><%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
+					 <td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %></td>
 					 <td><%= cartitem.quantity %></td>
-					 <td><%= cartitem.item.price *1.1 *cartitem.quantity %></td>
+					 <td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') *cartitem.quantity %></td>
 					 <td><%= link_to "削除する",cartitem_path(cartitem), method: :delete, class: "btn btn-danger" %></td>
 			 </tr>
 		 </table>
