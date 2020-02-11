@@ -5,12 +5,12 @@ class CartitemsController < ApplicationController
 	end
 
 	def create
-		cartitem = Cartitem.new
+		cartitem = Cartitem.new(cartitem_params)
 		cartitem.customer_id = current_customer.id
      if cartitem.save
      	redirect_to cartitems_path
      else
-     	cartitems = cartitem.all
+     	cartitems = Cartitem.all
      	render "items/show"
  		end
 	end
@@ -23,6 +23,11 @@ class CartitemsController < ApplicationController
 
 	def destroy_all
 		redirect_to
+	end
+
+	private
+	def cartitem_params
+		params.require(:cartitem).permit(:item_id,:customer_id,:quantity)
 	end
 
 end
