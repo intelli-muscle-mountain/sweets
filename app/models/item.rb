@@ -9,5 +9,7 @@ class Item < ApplicationRecord
 	validates :name, presence: true
 	validates :description, presence: true
 	validates :price, presence: true
-	
+	def tax_included_price
+		tax_included_price = price * 1.1
+	end
 end
