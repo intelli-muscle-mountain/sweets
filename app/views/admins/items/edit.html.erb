@@ -1,25 +1,44 @@
+<%= render'admins/link' %>
 
 <div class="container">
-	<h2>商品編集</h2>
+	<h2>商品 編集画面</h2>
 	<%= form_for(@item, url:admins_item_path(@item),method: :patch) do |f| %>
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-1">
+				 <%= attachment_image_tag @item, :image,:fill, 200, 200, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
 
-	 <%= attachment_image_tag @item, :image,:fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
-	
-	 <%= f.attachment_field :image %>
+			 	<%= f.attachment_field :image %>
+			</div>
 
-	<h4>商品名</h4>
-	<%= f.text_field :name %>
+			<div class="col-xs-8">
+				<div class="row admin-item">
+					<%= f.label :name, "商品名", class:"col-xs-2" %>
+					<%= f.text_field :name, class:"col-xs-4" %>
+				</div>
 
-	<h4>商品説明</h4>
-	<%= f.text_area :description %>
+				<div class="row admin-item">
+					<%= f.label :description, "商品説明", class:"col-xs-2" %>
+					<%= f.text_area :description, class:"col-xs-4" %>
+				</div>
 
-	<h4>ジャンル</h4>
+				<div class="row admin-item">
+					<%= f.label :genre_id, "ジャンル", class:"col-xs-2" %>
+					<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, class:"col-xs-4" %>
+				</div>
 
-	<h4>税別価格</h4>
-	<%= f.number_field :price %>
+				<div class="row admin-item">
+					<%= f.label :price, "税別価格", class:"col-xs-2" %>
+					<%= f.number_field :price, class:"col-xs-4" %>円
+				</div>
 
-	<h4>販売ステータス</h4>
-	<%= f.select :sale_status, [["販売中", "true"], ["売切れ", "false"]], :include_blank => "--選択してください--" %>
-	<%= f.submit "変更を保存" %>
+				<div class="row admin-item">
+					<%= f.label :sale_status, "販売ステータス", class:"col-xs-2" %>
+					<%= f.select :sale_status, [["販売中", "true"], ["売切れ", "false"]], :include_blank => "--選択してください--", class:"col-xs-4" %>
+				</div>
+			</div>
+		</div>
+		<div class="row admin-item-show-btn">
+			<%= f.submit "変更を保存", class:"col-xs-2 col-xs-offset-8 btn btn-primary"  %>
+		</div>
 	<% end %>
 </div>
