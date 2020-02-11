@@ -19,10 +19,15 @@ class CartitemsController < ApplicationController
 	end
 
 	def destroy
+		cartitem = Cartitem.find(params[:id])
+	    cartitem.destroy
+		redirect_to cartitems_path
 	end
 
 	def destroy_all
-		redirect_to
+		cartitem = Cartitem.where(customer_id: current_customer.id)
+	    cartitem.destroy_all
+	    redirect_to cartitems_path
 	end
 
 	private

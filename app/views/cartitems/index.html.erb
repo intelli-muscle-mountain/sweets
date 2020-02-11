@@ -2,6 +2,7 @@
 <%= render'customers/link' %>
 	<div class="container">
 		<h2>ショッピングカート</h2>
+		<td><%= link_to "カートを空にする",destroy_all_cartitems_path, method: :delete, class: "btn btn-danger" %></td>
 
 		<table>
 			  <tr>
