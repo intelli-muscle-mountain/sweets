@@ -1,3 +1,18 @@
 // Place all the styles related to the admins/genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.genre-index-add {
+	position:relative;
+}
+
+.genre-field {
+	margin-right: -30px;
+	position:absolute;
+	top: 6px;
+	left: -50px;
+}
+
+.genre-radio-text {
+	margin-right: 20px;
+}
