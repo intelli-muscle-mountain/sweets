@@ -1,7 +1,31 @@
+<%= render'customers/link' %>
 
+<div class="container">
+	<h3>購入情報入力</h3>
+	<h3>支払方法</h3>
 
+	<%= form_for(@order) do |f| %>
+		<%= f.label :payment, "クレジットカード", for:"order-availability" %>
+		<%= f.radio_button :payment, id:"order-invalid" %><br>
 
-<%= f.hidden_field :payment %>
-<%= f.hidden_field :freight %>
-<%= f.hidden_field :order_status %>
-<%= f.hidden_field :total_price %>
+		<%= f.label :payment, "銀行振込", for:"order-availability" %>
+		<%= f.radio_button :payment,  id:"order-invalid" %>
+
+		<h3>お届け先</h3>
+		<%= f.label :address, "ご自身の住所", for:"order-availability" %>
+		<%= f.radio_button :address, id:"order-invalid" %>
+
+		<%= cuurent_customer_address.customer.address %>
+
+		<%= f.label :address, "登録住所からの選択", for:"order-availability" %>
+		<%= f.radio_button :address, id:"order-invalid" %><br>
+
+		<%= f.label :address, "新しいお届け先", for:"order-availability" %>
+		<%= f.radio_button :address, id:"order-invalid" %><br>
+		<p>郵便番号　<%= f.text_field :postal_code %></p><p>ハイフンなし</p>
+		<p>住所　<%= f.text_field :address %></p>
+		<p>宛名　<%= f.text_field :destination_name %></p>
+
+		<%= f.submit "確認画面へ進む",class: "btn btn-info" %>
+	<% end %>
+</div>
