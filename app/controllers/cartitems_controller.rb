@@ -3,6 +3,7 @@ class CartitemsController < ApplicationController
 	def index
 		@cartitems = Cartitem.where(customer_id: current_customer.id)
 		@order = Order.new
+		@total_price = 0
 	end
 
 	def create
@@ -17,6 +18,9 @@ class CartitemsController < ApplicationController
 	end
 
 	def update
+		cartitem = Cartitem.find(params[:id])
+		cartitem.update(cartitem_params)
+    	redirect_to cartitems_path(cartitem.id)
 	end
 
 	def destroy

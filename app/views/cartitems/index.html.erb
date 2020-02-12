@@ -7,23 +7,34 @@
 
 		   <table>
 			    <tr>
-					<th>商品名</th>
-					<th>単価（税込)</th>
-					<th>数量</th>
-					<th>小計</th>
-					<th> </th>
+					<th>  商品名　</th>
+					<th>       　</th>
+					<th>  単価（税込）　</th>
+					<th>  数量　</th>
+					<th>  小計　</th>
 			    </tr>
-	                <% @cartitems.each do |cartitem| %>
-				<tr>
-					<td><%= cartitem.item.name %></td>
-					<td><%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
-					<td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %></td>
-					<td><%= cartitem.quantity %></td>
-					<td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') *cartitem.quantity %></td>
-					<td><%= link_to "削除する",cartitem_path(cartitem), method: :delete, class: "btn btn-danger" %></td>
-			 	</tr>
-			 	    <% end %>
+		      <% @cartitems.each do |cartitem| %>
+						<tr>
+							<td><%= cartitem.item.name %></td>
+							<td><%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
+							<td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %></td>
+
+											<%= form_for(cartitem) do |f| %>
+
+											<td><%= f.number_field :quantity %>
+									<input class="btn btn-primary" type="submit" value="変更"></td>
+								<% end %>
+
+							<% subtotal_price = cartitem.item.tax_included_price.to_i * cartitem.quantity %>
+							<% @total_price += subtotal_price.to_i  %>
+							<td><%= subtotal_price.to_i.to_s(:delimited, delimiter: ',') %></td>
+							<td><%= link_to "削除する",cartitem_path(cartitem), method: :delete, class: "btn btn-danger" %></td>
+					 
+		 	    <% end %>
+		 	    	<td><h2>合計金額<%= @total_price %></h2></td>
+		 	    	</tr>
 		   </table>
+
 <%= link_to '買い物を続ける', root_path, :class => 'btn btn-primary' %>
 </div>
 
