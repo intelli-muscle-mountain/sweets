@@ -31,3 +31,5 @@
 			<%= f.hidden_field :customer_id, :value => current_customer.id %>
 			<%= f.submit "情報入力に進む", :class => 'btn btn-primary' %>
 		<% end %>
+
+		<%= link_to '情報入力に進む', orders_path, :class => 'btn btn-primary' %>
