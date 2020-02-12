@@ -2,6 +2,7 @@ class CartitemsController < ApplicationController
 
 	def index
 		@cartitems = Cartitem.where(customer_id: current_customer.id)
+		@order = Order.new
 	end
 
 	def create
