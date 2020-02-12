@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6">
+			<h2 class="genre-headline">配送先登録 / 一覧</h2>
+
+			<%= form_for(@address, url: addresses_path) do |f| %>
+				<div class="row genre-index-add" style="margin-left: 0; margin-right: 0;">
+					<h4 class="col-xs-3">郵便番号</h4>
+				    <%= f.text_field :postal_code, class:"col-xs-3 genre-field" %>
+				</div>
+				<div class="row genre-index-add" style="margin-left: 0; margin-right: 0;">
+				    <h4 class="col-xs-3">住所</h4>
+				    <%= f.text_field :address, class:"col-xs-3 genre-field" %>
+				</div>
+				<div class="row genre-index-add" style="margin-left: 0; margin-right: 0;">
+				    <h4 class="col-xs-3">宛名</h4>
+				    <%= f.text_field :destination_name, class:"col-xs-3 genre-field" %>
+					<%= f.submit "登録する",class: "btn btn-info" %>
+				</div>
+			<% end %>
+
+			<table class="table">
+				<tr class="active">
+					<th>郵便番号</th>
+					<th>住所</th>
+					<th>宛名</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<% @addresses.each do |address| %>
+					<tr>
+						<td><%= address.postal_code %></td>
+						<td><%= address.address %></td>
+						<td><%= address.destination_name %></td>
+						<td><%= link_to "編集する", edit_address_path(address.id), class: "btn-sm btn-primary" %></td>
+						<td><%= link_to "削除する", address_path(address),method: :delete, class: "btn-sm btn-danger" %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-4"></div>
+	</div>
+</div>
