@@ -7,5 +7,5 @@ class Cartitem < ApplicationRecord
 	def tax_included_price
 		tax_included_price = price * 1.1
 	end
-	
+
 end
