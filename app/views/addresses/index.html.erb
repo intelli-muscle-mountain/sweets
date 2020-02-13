@@ -29,7 +29,7 @@
 				</tr>
 				<% @addresses.each do |address| %>
 					<tr>
-						<td><%= address.postal_code %></td>
+						<td>〒<%= address.postal_code %></td>
 						<td><%= address.address %></td>
 						<td><%= address.destination_name %></td>
 						<td><%= link_to "編集する", edit_address_path(address.id), class: "btn-sm btn-primary" %></td>
