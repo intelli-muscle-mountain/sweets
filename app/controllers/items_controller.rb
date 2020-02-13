@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 	def show
 		@item = Item.find(params[:id])
 		@cartitem = Cartitem.new
+		@genres = Genre.all
 	end
 
 

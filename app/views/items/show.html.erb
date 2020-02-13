@@ -1,19 +1,44 @@
+<%= render'customers/link' %>
+
 <div class="container">
-	<h2>ジャンル検索</h2>
+	<div class="row">
+		<div class="col-xs-2" style="border: 1px solid #000;">
+			<h3 style="border-bottom: 1px solid #000;">ジャンル検索</h2>
+			<table>
+				<% @genres.each do |genre| %>
+					<tr>
+						<td><%= genre.genre_name %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
 
+		<div class="col-xs-3 col-xs-offset-1">
+		 	<%= attachment_image_tag @item, :image,:fill, 200, 200, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+		</div>
 
-	 <%= attachment_image_tag @item, :image,:fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+		<div class="col-xs-6">
+			<div class="row">
+				<h3><%= @item.name %></h3>
+			</div>
+			<div class="row">
+				<p class="col-xs-10"><%= @item.description %></p>
+			</div>
+			<div class="row">
+				<h4>¥<%= @item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %>（税込）</h4>
+			</div>
+		</div>
+	</div>
 
-	<h4>商品名<%= @item.name %></h4>
-	<h4>商品説明<%= @item.description %></h4>
-	<h4>¥<%= @item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %>（税込）</h4>
-
-
-		<%= form_for(@cartitem, url:cartitems_path) do |f| %>
-			<%= f.number_field :quantity %>
-			<%= f.hidden_field :item_id, :value => @item.id %>
-			<%= f.hidden_field :customer_id, :value => current_customer.id %>
-			<%= f.submit "カートに入れる" %>
-		<% end %>
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-8">
+			<%= form_for(@cartitem, url:cartitems_path) do |f| %>
+				<%= f.number_field :quantity, placeholder: "個数選択" %>
+				<%= f.hidden_field :item_id, :value => @item.id %>
+				<%= f.hidden_field :customer_id, :value => current_customer.id %>
+				<%= f.submit "カートに入れる", class: "btn-sm btn-primary" %>
+			<% end %>
+		</div>
+	</div>
 
 </div>
