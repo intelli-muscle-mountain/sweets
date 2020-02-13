@@ -1,20 +1,22 @@
 <header>
-      <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', root_path %></a>
+  <%= link_to 'ながのCAKE', root_path %>
 
-   <ul class="nav pull-right nav-pills">
+  <ul class="nav pull-right nav-pills">
 
-   <% if customer_signed_in? %>
+    <% if customer_signed_in? %>
 
-    <li>ようこそ。<%= current_customer.last_name+current_customer.first_name %>様</li>
+      <li style="margin-right: 40px;">
+        ようこそ。<%= current_customer.last_name+current_customer.first_name %>様
+      </li>
 
-    <li class="cartitem">
-      <%= link_to 'Cart', cartitems_path %></li>
-    <li class="mypage">
-      <%= link_to 'My page', customer_path(current_customer.id) %></li>
-    <li class="about">
-      <%= link_to 'About', about_path %></li>
-    <li class="logout">
-      <%= link_to " Log out", destroy_customer_session_path, method: :delete %></li>
+      <li class="cartitem">
+        <%= link_to 'Cart', cartitems_path %></li>
+      <li class="mypage">
+        <%= link_to 'My page', customer_path(current_customer.id) %></li>
+      <li class="about">
+        <%= link_to 'About', about_path %></li>
+      <li class="logout">
+        <%= link_to " Log out", destroy_customer_session_path, method: :delete %></li>
 
 
     <% else %>
@@ -24,10 +26,10 @@
         <%= link_to "About", about_path %></li>
       <li class="login">
         <%= link_to "Log in", new_customer_session_path %></li>
-         <li class="signup">
-       <%= link_to "Sign up", new_customer_registration_path %></li>
+      <li class="signup">
+        <%= link_to "Sign up", new_customer_registration_path %></li>
 
-     </ul>
     <% end %>
+  </ul>
 
-  </header>
+</header>

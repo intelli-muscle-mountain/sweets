@@ -3,6 +3,9 @@ class Admins::ItemsController < ApplicationController
 	def top
 	end
 
+	def about
+	end
+
 	def index
 		@items = Item.all
 	end
