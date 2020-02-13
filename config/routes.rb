@@ -10,12 +10,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: [:new,:index,:create,:show]do
-    member do
-      get :confirm
-      get :thanks
-    end
-  end
+  get 'orders/confirm',to:'orders#confirm', as:'confirm_orders'
+  get 'orders/thanks',to:'orders#thanks', as:'thanks_orders'
+  resources :orders, only: [:new,:index,:create,:show]
+
 
   resources :addresses, only: [:index,:create,:edit,:update,:destroy]
 
