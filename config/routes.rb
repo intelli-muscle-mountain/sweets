@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   	resources :items, only: [:index,:show,:new,:create,:edit,:update]
   	resources :genres, only: [:index,:edit,:update,:create,:destroy]
   	resources :customers, only: [:index,:show,:edit,:update]
-	  resources :orders, only: [:index,:show,:update]
+	  resources :orders, only: [:index,:show,:update] do
+      patch 'item_status_update' ,on: :member
+    end
+
   end
 
   devise_for :admins, controllers: {
