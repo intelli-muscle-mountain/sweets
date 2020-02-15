@@ -33,16 +33,15 @@
 					</tr>
 
 					<% @order.order_items.each do |order_item| %>
+					<%= form_for(order_item, url: item_status_update_admins_order_path(order_item.id), method: :patch) do |f| %>
 					<tr>
 						<td><%= order_item.item.name %></td>
 						<td><%= order_item.price %></td>
 						<td><%= order_item.quantity %></td>
-
-							<%= form_for(@orders, url: admins_order_path(@orders.id), method: :post) do |f| %>
-							<%= f.select :item_status,Order_items.item_statuses.keys.to_a, {}  %>
+						<td><%= f.select :item_status,OrderItem.item_statuses.keys.to_a, {}  %></td>
 						<td><%= f.submit "更新",class: "btn-sm btn-primary" %></td>
-							<% end %>
 					</tr>
+					<% end %>
 					<% end %>
 				</table>
 			</div>
