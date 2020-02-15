@@ -22,6 +22,7 @@
 					<th>ジャンル</th>
 					<th>状態</th>
 					<th></th>
+					<th></th>
 				</tr>
 				<% @genres.each do |genre| %>
 					<tr>
@@ -33,6 +34,7 @@
 							<% end %>
 						</td>
 						<td><%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn-sm btn-primary" %></td>
+						<td><%= link_to "削除する",admins_genre_path(genre), method: :delete, class: "btn-sm btn-danger" %></td>
 					</tr>
 				<% end %>
 			</table>

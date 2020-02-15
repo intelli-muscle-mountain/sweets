@@ -1,1 +1,63 @@
-show.html.erb
+<%= render'admins/link' %>
+
+<div class="container">
+	<div class="row admin-item-head">
+		<h2 class="col-xs-3">注文詳細画面</h2>
+	</div>
+		    <div class="row">
+				<h4 class="col-xs-3"><%= @order.customer.full_name %></h4>
+			</div>
+
+				<div class="row">
+					<h4 class="col-xs-3"><%= @order.customer.full_address %></h4>
+				</div>
+
+					<div class="row">
+						<h4 class="col-xs-3"><%= @order.payment %></h4>
+					</div>
+
+						<%= form_for(@order, url: admins_order_path(@order.id), method: :patch) do |f| %>
+							<%= f.select :order_status,Order.order_statuses.keys.to_a, {}  %>
+							<%= f.submit "更新",class: "btn-sm btn-primary" %>
+					    <% end %>
+
+		<div class="row">
+			<div class="col-xs-8">
+				<table class="table">
+					<tr class="active">
+						<th>商品名</th>
+						<th>単価（税込）</th>
+						<th>数量</th>
+						<th>製作ステータス</th>
+						<th></th>
+					</tr>
+
+					<% @order.order_items.each do |order_item| %>
+					<tr>
+						<td><%= order_item.item.name %></td>
+						<td><%= order_item.price %></td>
+						<td><%= order_item.quantity %></td>
+
+							<%= form_for(@orders, url: admins_order_path(@orders.id), method: :post) do |f| %>
+							<%= f.select :item_status,Order_items.item_statuses.keys.to_a, {}  %>
+						<td><%= f.submit "更新",class: "btn-sm btn-primary" %></td>
+							<% end %>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			     <div class="row">
+					<h4 class="col-xs-3 col-xs-offset-8">商品合計</h4>
+		            <%#= order_item.total_price %>
+		         </div>
+				         <div class="row">
+							<h4 class="col-xs-3 col-xs-offset-8">送料</h4>
+							 <%= @order.freight %>円
+						 </div>
+							 <div class="row">
+								<h4 class="col-xs-3 col-xs-offset-8">請求金額合計</h4>
+								<%#= order_item.total_price + order.freight %>
+							 </div>
+		</div>
+</div>
+
