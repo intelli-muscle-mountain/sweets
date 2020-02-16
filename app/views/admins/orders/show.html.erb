@@ -9,8 +9,16 @@
 			</div>
 
 				<div class="row">
-					<h4 class="col-xs-3"><%= @order.customer.full_address %></h4>
+					<h4 class="col-xs-3"><%= @order.postal_code %></h4>
 				</div>
+					<div class="row">
+						<h4 class="col-xs-3"><%= @order.address %></h4>
+					</div>
+
+					<div class="row">
+						<h4 class="col-xs-3"><%= @order.destination_name %></h4>
+					</div>
+
 
 					<div class="row">
 						<h4 class="col-xs-3"><%= @order.payment %></h4>
