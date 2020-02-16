@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 				order_item =OrderItem.new(order_id: order.id)
 				order_item.item_id = item.item_id
 				order_item.price = item.item.price
+				
 				order_item.quantity = item.quantity
 				order_item.save
 
