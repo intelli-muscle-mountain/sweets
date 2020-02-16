@@ -1,22 +1,33 @@
 <%= render'customers/link' %>
 
 <div class="container">
-		 <table>
- 			 <h2>ジャンル検索</h2>
-    			 <h2 class="items-headline">ケーキ</h2>
-		   <% @item.each do |item| %>
-			 <tr>
-			 	<%= link_to item_path(item) do %>
-			 	<%= attachment_image_tag item, :image,:fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
-			 	<% end %>
-				<td><%= link_to item.name, item_path(item) %></td>
-				<td><%= item.price %></td>
-			 </tr>
-		   　 <tr>
-		   		<th></th>
-				<th>商品名</th>
-				<th>税抜価格</th>
-			　</tr>
-			<% end %>
-		 </table>
+	　<div class="row">
+			<div class="col-xs-2" style="border: 1px solid #000;">
+ 			　<h3 style="border-bottom: 1px solid #000;">ジャンル検索</h2>
+ 			</div>
+ 				<div class="col-xs-8 col-xs-offset-1">
+
+ 			 		　　　<h2>ケーキ</h2>
+
+ 			 				<div class="row">
+	 			 			<% @item.each do |item| %>
+
+	 			 			<div class="col-xs-3">
+	 			 				<div class="row">
+	 			 				<%= link_to item_path(item) do %>
+						 			<%= attachment_image_tag item, :image,:fill, 60, 60, format: 'jpeg', class: "col-xs-10 pull-left profile-img", fallback: "no_image.jpg" %>
+				 		　　　<% end %>
+				 				</div>
+				 				<div class="row">
+							<%= link_to item.name, item_path(item) %>
+						</div>
+						<div class="row">
+					　<%= item.price %>
+				  </div>
+				  </div>
+			　<% end %>
+		   </div>
+		 </div>
+		</div>
+	</div>
 </div>
