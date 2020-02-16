@@ -1,16 +1,22 @@
 class Admins::OrdersController < ApplicationController
 	def index
-		@orders = Order.all
+		if params[:place] == "header"
+			@orders = Order.all
+		elsif params[:place] == "top"
+			@orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+		elsif params[:place] == "customer"
+			@orders = Order.where(customer_id: params[:customer_id])
+		end
 	end
 
 	def show
 		@order = Order.find(params[:id])
 		@orders = Order.all
-
 	end
 
 	def update
 		@order = Order.find(params[:id])
+
   	if  @order.update(order_params)
   		if @order.order_status_before_type_cast == 1
   			@order.order_items.update_all(item_status: 1)
