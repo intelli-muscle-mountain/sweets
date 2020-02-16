@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
 				order_item.save
 
 			end
+		else
+			render 'confirm'
 		end
 		current_customer.cartitems.destroy_all
 		redirect_to thanks_orders_path
@@ -35,18 +37,18 @@ class OrdersController < ApplicationController
 		@order.payment = params[:payment]
 		@cartitems = Cartitem.where(customer_id: current_customer.id)
 		if params[:address] == "新しいお届け先"
-			@order.postal_code = params[postal_code]
-			@order.address = params[new_address]
-			@order.destination_name = params[destination_name]
+			@order.postal_code = params[:postal_code]
+			@order.address = params[:new_address]
+			@order.destination_name = params[:destination_name]
 		elsif params[:address] == "選択住所"
-			address = Address.find_by(id: params[address_id])
+			address = Address.find_by(id: params[:address_id])
 			@order.postal_code = address.postal_code
-			@order.postal_code = address.address
-			@order.postal_code = address.destination_name
+			@order.address = address.address
+			@order.destination_name = address.destination_name
 		elsif params[:address] == "ご自身の住所"
 			@order.postal_code = current_customer.postal_code
 			@order.address = current_customer.address
-			@order.destination_name = current_customer.last_name
+			@order.destination_name = current_customer.full_name
 		end
 	end
 

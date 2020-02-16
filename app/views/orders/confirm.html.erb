@@ -34,6 +34,10 @@
 				</tr>
 
 				<tr>
+					<td><%= @order.payment %></td>
+					<td>〒<%= @order.postal_code %></td>
+					<td><%= @order.address %></td>
+					<td><%= @order.destination_name %></td>
 				</tr>
 
 				<%= form_for(@order, url:orders_path) do |f| %>
