@@ -1,11 +1,11 @@
 class Admins::OrdersController < ApplicationController
 	def index
-		if params[:place] == "header"
-			@orders = Order.all
+		if params[:place] == "customer"
+			@orders = Order.where(customer_id: params[:customer_id])
 		elsif params[:place] == "top"
 			@orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-		elsif params[:place] == "customer"
-			@orders = Order.where(customer_id: params[:customer_id])
+		else
+			@orders = Order.all
 		end
 	end
 
