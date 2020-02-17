@@ -36,19 +36,20 @@
 						<th>商品名</th>
 						<th>単価（税込）</th>
 						<th>数量</th>
+						<th>小計</th>
 						<th>製作ステータス</th>
 						<th></th>
 					</tr>
 
 					<% t_price = 0 %>
 					<!-- これはeach分の中で宣言してしまうとeach分の中でしか使えないのでeach分の外で定義する -->
-
 					<% @order.order_items.each do |order_item| %>
 					<%= form_for(order_item, url: item_status_update_admins_order_path(order_item.id), method: :patch) do |f| %>
 					<tr>
 						<td><%= order_item.item.name %></td>
 						<td><%= order_item.price %></td>
 						<td><%= order_item.quantity %></td>
+						<td><%= order_item.price * order_item.quantity %></td>
 						<td><%= f.select :item_status,OrderItem.item_statuses.keys.to_a, {}  %></td>
 						<td><%= f.submit "更新",class: "btn-sm btn-primary" %></td>
 					</tr>
@@ -60,7 +61,7 @@
 		</div>
 			     <div class="row">
 					<h4 class="col-xs-3 col-xs-offset-8">商品合計</h4>
-		            <%= t_price %>
+		            <%= t_price %>円
 		         </div>
 				         <div class="row">
 							<h4 class="col-xs-3 col-xs-offset-8">送料</h4>
@@ -68,7 +69,7 @@
 						 </div>
 							 <div class="row">
 								<h4 class="col-xs-3 col-xs-offset-8">請求金額合計</h4>
-								<%= t_price + @order.freight %>
+								<%= t_price + @order.freight %>円
 							 </div>
 		</div>
 </div>

@@ -1,1 +1,70 @@
-show.html.erb
+<%= render'customers/link' %>
+
+<div class="container">
+	<h2>注文履歴詳細</h2>
+		 <div class="row">
+			<div class="col-xs-8">
+				<p><strong>注文情報</strong></p>
+					<table class="table table-bordered">
+						<tr>
+							<td class="col-xs-2 active">注文日</td>
+							<td class="col-xs-6"><%= @order.created_at.strftime("%Y/%m/%d") %></td>
+						</tr>
+						<tr>
+							<td class="active">配送先</td>
+							<td><%= @order.postal_code %><br><%= @order.address %><br><%= @order.destination_name %></td>
+						</tr>
+						<tr>
+							<td class="active">支払方法</td>
+							<td><%= @order.payment %></td>
+						</tr>
+						<tr>
+							<td class="active">ステータス</td>
+							<td><%= @order.order_status %></td>
+						</tr>
+					</table>
+			</div>
+			<div class="col-xs-4">
+			 	<p><strong>請求情報</strong></p>
+					<table class="table table-bordered">
+						<tr>
+							<td class="active">商品合計</td>
+							<td><%= @order.sub_price %>円</td>
+						</tr>
+						<tr>
+							<td class="active">配送料</td>
+							<td><%= @order.freight %>円</td>
+						</tr>
+						<tr>
+							<td class="active">ご請求額</td>
+							<td><%= @order.sub_price + @order.freight %>円</td>
+						</tr>
+					</table>
+			</div>
+		</div>
+			<div class="row">
+				<div class="col-xs-8">
+		 			 <p><strong>注文内容</strong></p>
+					<table class="table table-bordered">
+						<tr class="active">
+							<th>商品</th>
+							<th>単価（税込）</th>
+							<th>個数</th>
+							<th>小計</th>
+						</tr>
+						<% @order.order_items.each do |order_item| %>
+						<%= form_for(order_item, url: item_status_update_admins_order_path(order_item.id), method: :patch) do |f| %>
+						<tr>
+							<td><%= order_item.item.name %></td>
+							<td><%= order_item.price %></td>
+							<td><%= order_item.quantity %></td>
+							<td><%= order_item.price * order_item.quantity %></td>
+						</tr>
+						<% end %>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
