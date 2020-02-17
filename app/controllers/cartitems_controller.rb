@@ -7,20 +7,27 @@ class CartitemsController < ApplicationController
 	end
 
 	def create
-		cartitem = Cartitem.new(cartitem_params)
-		cartitem.customer_id = current_customer.id
-     if cartitem.save
-     	redirect_to cartitems_path
-     else
-     	cartitems = Cartitem.all
-     	render "items/show"
+		@genres = Genre.all
+		@cartitem = Cartitem.new(cartitem_params)
+		@cartitem.customer_id = current_customer.id
+		@item = Item.find(@cartitem.item_id)
+    	if @cartitem.save
+     		redirect_to cartitems_path
+    	else
+	     	redirect_back(fallback_location: item_path(@cartitem.item_id))
  		end
 	end
 
 	def update
+		@cartitems = Cartitem.where(customer_id: current_customer.id)
+		@order = Order.new
+		@total_price = 0
 		cartitem = Cartitem.find(params[:id])
-		cartitem.update(cartitem_params)
-    	redirect_to cartitems_path(cartitem.id)
+		if cartitem.update(cartitem_params)
+    		redirect_to cartitems_path(cartitem.id)
+    	else
+    		render 'index'
+    	end
 	end
 
 	def destroy
