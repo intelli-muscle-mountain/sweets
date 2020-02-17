@@ -1,55 +1,76 @@
 <%= render'customers/link' %>
 
 <div class="container">
+	<h3>注文情報確認</h3>
 	<div class="row">
 		<div class="col-xs-8">
-			<h3>注文情報確認</h3>
-			<table>
-				<tr>
-					<th>  商品名　</th>
-					<th>       　</th>
-					<th>  単価（税込）　</th>
-					<th>  数量　</th>
-					<th>  小計　</th>
+			<table class="table table-bordered">
+				<tr class="active">
+					<th>商品名</th>
+					<th>単価（税込）</th>
+					<th>数量</th>
+					<th>小計</th>
 			    </tr>
 
 		    	<% @cartitems.each do |cartitem| %>
 					<tr>
-						<td><%= cartitem.item.name %></td>
-						<td><%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
-							<td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %></td>
+						<td>
+							<%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'60x60' %>
+							<%= cartitem.item.name %>
+						</td>
+						<td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %></td>
 						<td><%= cartitem.quantity %></td>
 						<td><%= subtotal_price = cartitem.item.tax_included_price.to_i * cartitem.quantity %></td>
-						<td><% @total_price += subtotal_price.to_i  %></td>
+						<% @total_price += subtotal_price.to_i  %>
 		 	    	</tr>
 		 	    <% end %>
-		 	    <td><h2>合計金額<%= @total_price %></h2></td>
 			</table>
-			<table>
+		</div>
+		<div class="col-xs-3 col-xs-offset-1">
+			<table class="table table-bordered">
 				<tr>
-					<th>  支払方法　</th>
-				    <th>  お届け先	 </th>
-				    <th>           </th>
+					<td class="active">送料</td>
+					<td><%= @order.freight %></td>
 				</tr>
+				<tr>
+					<td class="active">商品合計</td>
+					<td><%= @total_price %></td>
+				</tr>
+				<tr>
+					<td class="active">請求金額</td>
+					<td><%= @total_price + @order.freight %> </td>
+				</tr>
+			</table>
+		</div>
+	</div>
+			<div class="row">
+				<h3 class="col-xs-2">支払方法</h3>
+				<p class="col-xs-10" style="font-size: 16px; margin-top: 20px;"><%= @order.payment %></p>
+			</div>
 
-				<tr>
-					<td><%= @order.payment %></td>
-					<td>〒<%= @order.postal_code %></td>
-					<td><%= @order.address %></td>
-					<td><%= @order.destination_name %></td>
-				</tr>
+			<div class="row">
+				<h3 class="col-xs-2">お届け先</h3>
+				<div class="col-xs-10">
+					<div class="row">
+						<p class="col-xs-2" style="margin-top: 20px;">〒<%= @order.postal_code %></p>
+						<p class="col-xs-10" style="margin-left: -80px; margin-top: 20px;"><%= @order.address %></p>
+					</div>
+					<div class="row">
+						<p style="margin-left: 15px;"><%= @order.destination_name %></p>
+					</div>
+				</div>
+			</div>
+
 
 				<%= form_for(@order, url:orders_path) do |f| %>
 					<%= f.hidden_field :customer_id, :value => current_customer.id %>
 					<%= f.hidden_field :payment, :value => @order.payment %>
 					<%= f.hidden_field :freight, :value => 800 %>
-					<%= f.hidden_field :total_price, :value => @total_price %>
+					<%= f.hidden_field :total_price, :value => @total_price + @order.freight %>
 					<%= f.hidden_field :destination_name, :value => @order.destination_name %>
 					<%= f.hidden_field :postal_code, :value => @order.postal_code %>
 					<%= f.hidden_field :address, :value => @order.address %>
 					<%= f.submit "購入を確定する", class: "btn-sm btn-primary" %>
 				<% end %>
-			</table>
-		</div>
 	</div>
 </div>
