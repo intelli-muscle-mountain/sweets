@@ -1,35 +1,38 @@
 <%= render'customers/link' %>
 
 <div class="container">
-	<h3>購入情報入力</h3>
-	<h3>支払方法</h3>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
 
-	<%= form_with url:confirm_orders_path, method: :get, data: {remote: false} do |f| %>
-		<%= f.label :payment, "クレジットカード", for:"order-invalid" %>
-		<%= f.radio_button :payment,"クレジットカード", id:"order-invalid" %><br>
+			<h3>購入情報入力</h3>
+			<h4>支払方法</h4>
 
-		<%= f.label :payment, "銀行振込", for:"order-availability" %>
-		<%= f.radio_button :payment, "銀行振込", id:"order-availability" %>
+				<%= form_with url:confirm_orders_path, method: :get, data: {remote: false} do |f| %>
+				  <%= f.radio_button :payment,"クレジットカード", id:"order-invalid" %>
+					<%= f.label :payment, "クレジットカード", for:"order-invalid" %><br>
 
-		<h3>お届け先</h3>
-		<%= f.label :address, "ご自身の住所", for:"a" %>
-		<%= f.radio_button :address, "ご自身の住所", id:"a"  %>
-		<%= current_customer.full_address %>
-		<%= current_customer.full_name %><br>
+					<%= f.radio_button :payment, "銀行振込", id:"order-availability" %>
+					<%= f.label :payment, "銀行振込", for:"order-availability" %>
+
+				<h4>お届け先</h4>
+				 <%= f.radio_button :address, "ご自身の住所", id:"a"  %>
+					<%= f.label :address, "ご自身の住所", for:"a" %>
+					<%= current_customer.full_address %>
+					<%= current_customer.full_name %><br>
+
+					<%= f.radio_button :address, '選択住所', id:"b" %>
+					<%= f.label :address, "登録住所からの選択", for:"b" %>
+					<%= f.collection_select :address_id, @addresses, :id, :address %><br>
 
 
-		<%= f.label :address, "登録住所からの選択", for:"b" %>
-		<%= f.radio_button :address, '選択住所', id:"b" %><br>
-		<%= f.label :address, "," %>
-		<%= f.collection_select :address_id, Address.all, :id, :address %><br>
+					<%= f.label :address, "新しいお届け先", for:"c" %>
+					<%= f.radio_button :address, '新しいお届け先', id:"c" %>
+					<p>郵便番号　<%= f.text_field :postal_code %></p>
+					<p>住所　<%= f.text_field :new_address %></p>
+					<p>宛名　<%= f.text_field :destination_name %></p>
 
-
-		<%= f.label :address, "新しいお届け先", for:"c" %>
-		<%= f.radio_button :address, '新しいお届け先', id:"c" %><br>
-		<p>郵便番号　<%= f.text_field :postal_code %></p><p>ハイフンなし</p>
-		<p>住所　<%= f.text_field :new_address %></p>
-		<p>宛名　<%= f.text_field :destination_name %></p>
-
-		<%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
-	<% end %>
+				<%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
 </div>
