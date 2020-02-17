@@ -15,10 +15,19 @@ class Order < ApplicationRecord
 	end
 
 	def total_quantity
-		quantity = 0
-		order_items.each do |i|
-			quantity += i.quantity
-		end
-		return quantity
+		order_items.sum("quantity")
+	end
+
+	def sub_price
+		order_items.sum("price * quantity")
 	end
 end
+
+
+# def total_quantity
+# 		quantity = 0
+# 		order_items.each do |i|
+# 			quantity += i.quantity
+# 		end
+# 		return quantitys
+# 	end
