@@ -1,20 +1,19 @@
 
 <header>
-       <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', root_path %></a>
-<ul class="nav pull-right nav-pills">
+       <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', admins_top_path %></a>
+  <ul class="nav pull-right nav-pills">
     <% if admin_signed_in? %>
        <li class="item">
         <%= link_to '商品一覧', admins_items_path %></li>
       <li class="costomer">
         <%= link_to '会員一覧', admins_customers_path %></li>
       <li class="orderitem">
-        <%= link_to "注文履歴一覧", admins_orders_path %></li>
+        <%= link_to "注文履歴一覧", admins_orders_path(place: "header") %></li>
       <li class="genre">
         <%= link_to "ジャンル管理	", admins_genres_path %></li>
       <li class="logout">
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-
-      </ul>
     <% end %>
+  </ul>
 
 </header>

@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 
 	def new
-		@addresses = Address.where(customer_id:current_customer.id)
 	end
 
 	def create

@@ -2,5 +2,7 @@
 
 <div class="container">
 	<h1>管理者画面</h1>
-	<h2>本日の注文件数<span>０</span>件</h2>
+	<h2>本日の注文件数
+		<%= link_to @orders.length, admins_orders_path(place: "top") %>
+		件</h2>
 </div>

@@ -43,8 +43,8 @@
 					<td><%= @customer.email %></td>
 				</tr>
 			</table>
-			<%= link_to "編集する",  edit_admins_customer_path(@customer.id), class:"btn btn-primary" %>
-			<%= link_to "注文履歴一覧を見る",  admins_order_path, class:"btn btn-primary customer-show-btn" %>
+			<%= link_to "編集する", edit_admins_customer_path(@customer.id), class:"btn btn-primary" %>
+			<%= link_to "注文履歴一覧を見る", admins_orders_path(place: "customer", customer_id: @customer.id), class:"btn btn-primary customer-show-btn" %>
 		</div>
 	</div>
 </div>
