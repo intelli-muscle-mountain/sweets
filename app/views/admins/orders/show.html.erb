@@ -47,29 +47,29 @@
 					<%= form_for(order_item, url: item_status_update_admins_order_path(order_item.id), method: :patch) do |f| %>
 					<tr>
 						<td><%= order_item.item.name %></td>
-						<td><%= order_item.price %></td>
+						<td><%= order_item.item.tax_included_price.to_s(:delimited) %></td>
 						<td><%= order_item.quantity %></td>
-						<td><%= order_item.price * order_item.quantity %></td>
+						<td><%= (order_item.item.tax_included_price * order_item.quantity).to_s(:delimited) %></td>
 						<td><%= f.select :item_status,OrderItem.item_statuses.keys.to_a, {}  %></td>
 						<td><%= f.submit "更新",class: "btn-sm btn-primary" %></td>
 					</tr>
 					<% end %>
-					<% t_price += order_item.price * order_item.quantity  %>
+					<% t_price += order_item.item.tax_included_price * order_item.quantity  %>
 					<% end %>
 				</table>
 			</div>
 		</div>
 			     <div class="row">
 					<h4 class="col-xs-3 col-xs-offset-8">商品合計</h4>
-		            <%= t_price %>円
+		            <%= t_price.to_s(:delimited) %>円
 		         </div>
 				         <div class="row">
 							<h4 class="col-xs-3 col-xs-offset-8">送料</h4>
-							 <%= @order.freight %>円
+							 <%= @order.freight.to_s(:delimited) %>円
 						 </div>
 							 <div class="row">
 								<h4 class="col-xs-3 col-xs-offset-8">請求金額合計</h4>
-								<%= t_price + @order.freight %>円
+								<%= (t_price + @order.freight).to_s(:delimited) %>円
 							 </div>
 		</div>
 </div>

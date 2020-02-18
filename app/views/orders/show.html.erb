@@ -29,15 +29,15 @@
 					<table class="table table-bordered">
 						<tr>
 							<td class="active">商品合計</td>
-							<td><%= @order.sub_price %>円</td>
+							<td><%= @order.sub_price.to_s(:delimited) %>円</td>
 						</tr>
 						<tr>
 							<td class="active">配送料</td>
-							<td><%= @order.freight %>円</td>
+							<td><%= @order.freight.to_s(:delimited) %>円</td>
 						</tr>
 						<tr>
 							<td class="active">ご請求額</td>
-							<td><%= @order.sub_price + @order.freight %>円</td>
+							<td><%= (@order.total_price + @order.freight).to_s(:delimited) %>円</td>
 						</tr>
 					</table>
 			</div>
@@ -56,9 +56,9 @@
 						<%= form_for(order_item, url: item_status_update_admins_order_path(order_item.id), method: :patch) do |f| %>
 						<tr>
 							<td><%= order_item.item.name %></td>
-							<td><%= order_item.price %></td>
+							<td><%= order_item.item.tax_included_price.to_s(:delimited) %></td>
 							<td><%= order_item.quantity %></td>
-							<td><%= order_item.price * order_item.quantity %></td>
+							<td><%= (order_item.item.tax_included_price * order_item.quantity).to_s(:delimited) %></td>
 						</tr>
 						<% end %>
 						<% end %>

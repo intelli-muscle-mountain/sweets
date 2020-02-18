@@ -1,4 +1,6 @@
 class Admins::OrdersController < ApplicationController
+	before_action :authenticate_admin!
+	
 	def index
 		if params[:place] == "customer"
 			@orders = Order.where(customer_id: params[:customer_id])
