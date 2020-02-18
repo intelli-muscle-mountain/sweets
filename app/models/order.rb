@@ -19,8 +19,10 @@ class Order < ApplicationRecord
 	end
 
 	def sub_price
-		order_items.sum("price * quantity")
+		order_items.sum("price * 1.1 * quantity").round(0)
 	end
+
+	
 end
 
 

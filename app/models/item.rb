@@ -11,5 +11,6 @@ class Item < ApplicationRecord
 	validates :price, presence: true
 	def tax_included_price
 		tax_included_price = price * 1.1
+		tax_included_price = tax_included_price.round(0)
 	end
 end

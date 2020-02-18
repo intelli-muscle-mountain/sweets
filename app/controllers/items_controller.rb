@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+	before_action :authenticate_customer!, except: [:index,:show,:about]
+
 	def index
 		@genres = Genre.where(genre_status: true)
 		if params[:category].present?
