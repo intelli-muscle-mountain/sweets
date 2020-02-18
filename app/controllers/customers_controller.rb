@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
 	before_action :authenticate_customer!
-	
+
 	def show
 		@customer = Customer.find(params[:id])
 	end
@@ -24,6 +24,7 @@ class CustomersController < ApplicationController
 
 	def status_change
 		customer = Customer.find(params[:id])
+		sign_out(Customer)
 		customer.update(change_params)
 		redirect_to root_path
 	end
