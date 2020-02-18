@@ -19,7 +19,7 @@
 	        <% @cartitems.each do |cartitem| %>
 				<tr>
 					<td>
-						<%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+						<%= attachment_image_tag cartitem.item, :image, :fill, 60, 60, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'60x60' %>
 						<%= cartitem.item.name %>
 					</td>
 					<td><%= cartitem.item.tax_included_price.to_i.to_s(:delimited, delimiter: ',') %></td>

@@ -7,21 +7,25 @@ class OrdersController < ApplicationController
 
 	def create
 		order = Order.new(order_params)
-		if order.save
-			current_customer.cartitems.each do | item |
-				order_item =OrderItem.new(order_id: order.id)
-				order_item.item_id = item.item_id
-				order_item.price = item.item.price
-				
-				order_item.quantity = item.quantity
-				order_item.save
-
-			end
+		if params[:back]
+			@addresses = Address.where(customer_id:current_customer.id)
+			render 'new'
 		else
-			render 'confirm'
+			if order.save
+				current_customer.cartitems.each do | item |
+					order_item =OrderItem.new(order_id: order.id)
+					order_item.item_id = item.item_id
+					order_item.price = item.item.price
+					order_item.quantity = item.quantity
+					order_item.save
+				end
+				current_customer.cartitems.destroy_all
+				redirect_to thanks_orders_path
+			else
+				@addresses = Address.where(customer_id:current_customer.id)
+				render 'new'
+			end
 		end
-		current_customer.cartitems.destroy_all
-		redirect_to thanks_orders_path
 	end
 
 	def index
