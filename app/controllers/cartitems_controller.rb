@@ -12,11 +12,19 @@ class CartitemsController < ApplicationController
 		@cartitem = Cartitem.new(cartitem_params)
 		@cartitem.customer_id = current_customer.id
 		@item = Item.find(@cartitem.item_id)
-    	if @cartitem.save
-     		redirect_to cartitems_path
+		cartitems = Cartitem.where(customer_id: current_customer.id)
+		if cartitems.find_by(item_id: @cartitem.item_id).present?
+			cartitem = cartitems.find_by(item_id: @cartitem.item_id)
+			cartitem.quantity += @cartitem.quantity
+			cartitem.save(cartitem_params)
+			redirect_to cartitems_path
     	else
-	     	redirect_back(fallback_location: item_path(@cartitem.item_id))
- 		end
+    		if @cartitem.save
+     			redirect_to cartitems_path
+	    	else
+		     	redirect_back(fallback_location: item_path(@cartitem.item_id))
+	 		end
+	 	end
 	end
 
 	def update

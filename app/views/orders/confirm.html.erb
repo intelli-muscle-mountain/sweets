@@ -70,6 +70,8 @@
 					<%= f.hidden_field :destination_name, :value => @order.destination_name %>
 					<%= f.hidden_field :postal_code, :value => @order.postal_code %>
 					<%= f.hidden_field :address, :value => @order.address %>
+
+					<%= f.submit "入力画面に戻る", {name: "back", class: "btn-sm btn-primary"} %>
 					<%= f.submit "購入を確定する", class: "btn-sm btn-primary" %>
 				<% end %>
 	</div>
