@@ -1,9 +1,8 @@
 <header>
   <%= link_to 'ながのCAKE', root_path %>
 
-  <ul class="nav pull-right nav-pills">
-
     <% if customer_signed_in? %>
+  <ul class="nav pull-right nav-pills">
 
       <li style="margin-right: 40px;">
         ようこそ。<%= current_customer.last_name+current_customer.first_name %>様
@@ -17,9 +16,10 @@
         <%= link_to 'About', about_path %></li>
       <li class="logout">
         <%= link_to " Log out", destroy_customer_session_path, method: :delete %></li>
-
-
+  </ul>
     <% else %>
+      <ul class="nav pull-right nav-pills">
+
       <li class="cart">
         <%= link_to 'Item', root_path %></li>
       <li class="about">
@@ -28,8 +28,26 @@
         <%= link_to "Log in", new_customer_session_path %></li>
       <li class="signup">
         <%= link_to "Sign up", new_customer_registration_path %></li>
-
-    <% end %>
   </ul>
+    <% end %>
+
+    <div style="position: absolute; right:10px; height: 40px; margin-top: -50px; ">
+      <%= form_with   class: "search__form" do |f| %>
+      <%= f.text_field class: "search__form__input"%>
+      <%= f.submit "検索" ,style:"line-height: normal;"%>
+      <% end %>
+    </div>
 
 </header>
+
+
+<style>
+  .nav > li > a {
+    display: inline;
+  }
+  input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal;
+}
+  </style>
