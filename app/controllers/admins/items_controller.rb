@@ -5,7 +5,7 @@ class Admins::ItemsController < ApplicationController
 	end
 
 	def index
-		@items = Item.all
+		@items = Item.page(params[:page]).reverse_order
 	end
 
 	def show

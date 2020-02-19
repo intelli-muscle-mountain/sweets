@@ -34,6 +34,10 @@ class OrdersController < ApplicationController
 
 	def show
 		@order = Order.find(params[:id])
+		if current_customer.id != @order.customer_id
+			# もしcurrent_customer.idと@address.customer_idが異なる場合はitems_pathに遷移する
+			redirect_to items_path
+		end
 	end
 
 	def thanks
@@ -59,6 +63,7 @@ class OrdersController < ApplicationController
 			@order.destination_name = current_customer.full_name
 		end
 	end
+
 
 	private
 	def order_params

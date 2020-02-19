@@ -21,6 +21,10 @@ class AddressesController < ApplicationController
 
 	def edit
 		@address = Address.find(params[:id])
+		if current_customer.id != @address.customer_id
+			# もしcurrent_customer.idと@address.customer_idが異なる場合はitems_pathに遷移する
+			redirect_to items_path
+		end
 	end
 
 	def update
@@ -37,6 +41,7 @@ class AddressesController < ApplicationController
 	    address.destroy
 		redirect_to addresses_path
 	end
+
 
 
 	private

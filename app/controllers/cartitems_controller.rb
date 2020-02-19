@@ -33,7 +33,7 @@ class CartitemsController < ApplicationController
 		@total_price = 0
 		cartitem = Cartitem.find(params[:id])
 		if cartitem.update(cartitem_params)
-    		redirect_to cartitems_path(cartitem.id)
+    		redirect_to cartitems_path
     	else
     		render 'index'
     	end
@@ -50,6 +50,7 @@ class CartitemsController < ApplicationController
 	    cartitem.destroy_all
 	    redirect_to cartitems_path
 	end
+
 
 	private
 	def cartitem_params
