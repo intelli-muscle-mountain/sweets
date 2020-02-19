@@ -1,12 +1,21 @@
 class CustomersController < ApplicationController
 	before_action :authenticate_customer!
 
+	before_action :set_customer,only: [:edit,:show,:withdraw]
+
+
 	def show
-		@customer = Customer.find(params[:id])
+		set_customer
+		if @customer != current_customer
+			redirect_to items_path
+		end
 	end
 
 	def edit
-		@customer = Customer.find(params[:id])
+		set_customer
+		if @customer != current_customer
+			redirect_to items_path
+		end
 	end
 
 	def update
@@ -19,7 +28,10 @@ class CustomersController < ApplicationController
 	end
 
 	def withdraw
-		@customer = Customer.find(params[:id])
+		set_customer
+		if @customer != current_customer
+			redirect_to items_path
+		end
 	end
 
 	def status_change
@@ -27,6 +39,10 @@ class CustomersController < ApplicationController
 		sign_out(Customer)
 		customer.update(change_params)
 		redirect_to root_path
+	end
+
+	def set_customer
+        @customer = Customer.find_by(id: params[:id])
 	end
 
 	private
