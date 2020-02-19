@@ -2,10 +2,12 @@
 
 <div class="container">
 	<h2 style="margin-bottom: 50px;">ジャンル編集画面</h2>
+	<%= attachment_image_tag @genre, :genre_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 
 	<%= form_for(@genre, url: admins_genre_path(@genre.id)) do |f| %>
 	<span>ジャンル</span>
     	<%= f.text_field :genre_name %>
+    	<%= f.attachment_field :genre_image %>
 	    <%= f.radio_button :genre_status, :true, id:"genre-edit-availability" %>
 	    <%= f.label :genre_status, "有効", for:"genre-edit-availability" %>
 	    <%= f.radio_button :genre_status, :false, id:"genre-edit-invalid" %>
