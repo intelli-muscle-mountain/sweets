@@ -1,0 +1,47 @@
+<%= render'customers/link' %>
+
+<div class="container">
+  	<div class="row">
+  		<div class="col-xs-10 col-xs-offset-1">
+  			<h2>ジャンル</h2>
+	 		<% @genres.each do |genre| %>
+	 			<div class="col-xs-3">
+	 				<div class="row">
+						<%= link_to items_path(category: genre.genre_name) do %>
+							<%= attachment_image_tag genre, :genre_image,:fill, 200, 200, format: 'jpeg', class: "col-xs-10 pull-left profile-img", fallback: "no_image.jpg", size:'160x160' %>
+						<% end %>
+					</div>
+					<div class="row">
+						<%= link_to items_path(category: genre.genre_name) do %>
+							<%= genre.genre_name %>
+						<% end %>
+					</div>
+		 		</div>
+		 	<% end %>
+		 </div>
+ 	</div>
+
+ 	<div class="row">
+ 		<div class="col-xs-10 col-xs-offset-1">
+			<h2>Sweets Item</h2>
+ 			<div class="row">
+	 			<% @items.each do |item| %>
+	 				<div class="col-xs-3">
+		 				<div class="row">
+			 				<%= link_to item_path(item) do %>
+				 				<%= attachment_image_tag item, :image,:fill, 200, 200, format: 'jpeg', class: "col-xs-10 pull-left profile-img", fallback: "no_image.jpg", size:'160x160' %>
+		 		　　　		<% end %>
+	 					</div>
+	 					<div class="row">
+							<%= link_to item.name, item_path(item) %>
+						</div>
+						<div class="row">
+							￥<%= item.price %>
+						</div>
+					</div>
+				<% end %>
+				<%= paginate @items, class: "paginate" %>
+			</div>
+		</div>
+	</div>
+</div>
