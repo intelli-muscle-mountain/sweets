@@ -67,21 +67,57 @@
 		let img11 = new Image();
 		img11.src = "<%= image_path('sweets_shortcake.png') %>";
 
+		let map = new Image();
+		map.src = "<%= image_path('nihonchizu_area.png') %>";
+
+		let about1 = new Image();
+		about1.src = "<%= image_path('about1.jpg') %>";
+
+		let about2 = new Image();
+		about2.src = "<%= image_path('about2.jpg') %>";
+
+		let about3 = new Image();
+		about3.src = "<%= image_path('about3.jpg') %>";
+
 		ctx.drawImage(img1, x1, y1, 50, 50);
-		ctx.drawImage(img2, x + 50, y2 , 50, 50);
-		ctx.drawImage(img3, (x + 100) * Math.cos(t / 180), y3 , 50, 50);
+		ctx.drawImage(img2, x + 50, y2 , 100, 100);
+		ctx.drawImage(img3, (x + 100) * Math.cos(t / 180), y3 , 70, 70);
 		ctx.drawImage(img4, x + 150, y4 , 50, 50);
 		ctx.drawImage(img5, (x + 200) + 100 * Math.sin(t1 / 30), y5 , 70, 70);
 		ctx.drawImage(img6, (x + 250) + 200 * Math.sin(t1 / 180), y6 , 100, 100);
 		ctx.drawImage(img7, x7, y7 , 50, 50);
 		ctx.drawImage(img8, x8, y8 , 50, 50);
-		ctx.drawImage(img9, x9 * Math.sin(t9 / 180), y9 , 50, 50);
+		ctx.drawImage(img9, x9 * Math.sin(t9 / 180), y9 , 70, 70);
 		ctx.drawImage(img10, x10 + 300 * Math.sin(t1 / 60), y10 , 50, 50);
-		ctx.drawImage(img11, x11, y11 , 50, 50);
+		ctx.drawImage(img11, x11, y11 , 100, 100);
+		ctx.drawImage(map, 1000, 150, 300, 300);
 
-		ctx.font = '50pt Arial';
-  　		ctx.fillStyle = 'rgba(0, 0, 255)';
-		ctx.fillText('ながのは漢の心', 20, 70);
+		ctx.font = '50pt fantasy';
+  　		ctx.fillStyle = 'rgba(210, 105, 30)';
+		ctx.fillText('We are NaganoCAKE', 20, 70);
+
+		ctx.font = '30pt arial black';
+		ctx.fillStyle = 'rgba(0, 0, 0)';
+		ctx.fillText('アクセス', 950, 150);
+
+		ctx.font = '30pt Arial';
+		ctx.fillStyle = 'rgba(255, 0, 0)';
+		ctx.fillText('ここ↓', 1080, 320);
+
+		ctx.fillStyle = 'rgba(105, 105, 105, 0.6)';
+		ctx.fillRect(40, 100, 860, 430);
+		ctx.font = '30pt arial black';
+		ctx.fillStyle = 'rgba(250, 240, 230)';
+		ctx.fillText('ながのCAKEのこだわり', 50, 150);
+
+		ctx.font = '20pt arial narrow';
+		ctx.fillStyle = 'rgba(255, 255, 255)';
+		ctx.fillText('卵や牛乳、水、果物など、お菓子に必要な素材を、地元の契約農家', 70, 200);
+		ctx.fillText('や農場より直接仕入れることにより、おいしさとお値打ち価格、そ', 70, 240);
+		ctx.fillText('して安全・安心が加わったお菓子をお客様へお届けいたします。', 70, 280);
+		ctx.drawImage(about1, 65, 320, 250, 200);
+		ctx.drawImage(about2, 345, 320, 250, 200);
+		ctx.drawImage(about3, 625, 320, 250, 200);
 
 		x1 += 0.5;
 		x7 += vx7;
