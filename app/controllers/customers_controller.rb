@@ -1,6 +1,8 @@
 class CustomersController < ApplicationController
 	before_action :authenticate_customer!
+
 	before_action :set_customer,only: [:edit,:show,:withdraw]
+
 
 	def show
 		set_customer
@@ -34,6 +36,7 @@ class CustomersController < ApplicationController
 
 	def status_change
 		customer = Customer.find(params[:id])
+		sign_out(Customer)
 		customer.update(change_params)
 		redirect_to root_path
 	end

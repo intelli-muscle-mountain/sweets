@@ -1,19 +1,52 @@
 
 <header>
-       <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', admins_top_path %></a>
+       <a class="nav navbar-nav navbar-left"><%= link_to 'ながのCAKE', admins_top_path, style:"font-size: 50px;" %></a>
   <ul class="nav pull-right nav-pills">
     <% if admin_signed_in? %>
-       <li class="item">
-        <%= link_to '商品一覧', admins_items_path %></li>
+      <li class="item">
+        <%= link_to admins_items_path do %>
+          <i class="fas fa-birthday-cake"><span style="margin-left: 10px;">商品一覧</span></i>
+        <% end %>
+      </li>
       <li class="costomer">
-        <%= link_to '会員一覧', admins_customers_path %></li>
+        <%= link_to admins_customers_path do %>
+          <i class="fas fa-users"><span style="margin-left: 10px;">会員一覧</span></i>
+        <% end %>
+      </li>
       <li class="orderitem">
-        <%= link_to "注文履歴一覧", admins_orders_path %></li>
+        <%= link_to admins_orders_path do %>
+          <i class="fas fa-history"><span style="margin-left: 10px;">注文履歴一覧</span></i>
+        <% end %>
+      </li>
       <li class="genre">
-        <%= link_to "ジャンル管理	", admins_genres_path %></li>
+        <%= link_to admins_genres_path do %>
+          <i class="fas fa-utensils"><span style="margin-left: 10px;">ジャンル管理</span></i>
+        <% end %>
+      </li>
       <li class="logout">
-      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <%= link_to destroy_admin_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt"><span style="margin-left: 10px;">ログアウト</span></i>
+        <% end %>
+      </li>
+
+      <div style="position: absolute; top:100px; right:10px; height: 40px; margin-top: -30px; ">
+        <%= form_with   class: "search__form" do |f| %>
+          <%= f.text_field class: "search__form__input"%>
+          <%= f.submit "検索" ,style:"line-height: normal;"%>
+        <% end %>
+      </div>
     <% end %>
   </ul>
 
 </header>
+
+<style>
+  .nav > li > a {
+    display: inline;
+  }
+  input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal;
+  }
+</style>
