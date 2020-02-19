@@ -1,5 +1,5 @@
 <header>
-  <%= link_to 'ながのCAKE', root_path %>
+  <%= link_to 'ながのCAKE', root_path, style:"font-size: 50px;" %>
 
     <% if customer_signed_in? %>
   <ul class="nav pull-right nav-pills">
@@ -9,29 +9,53 @@
       </li>
 
       <li class="cartitem">
-        <%= link_to 'Cart', cartitems_path %></li>
+        <%= link_to cartitems_path do %>
+          <i class="fas fa-shopping-cart"><span style="margin-left: 10px;">Cart</span></i></i>
+        <% end %>
+      </li>
       <li class="mypage">
-        <%= link_to 'My page', customer_path(current_customer.id) %></li>
+        <%= link_to customer_path(current_customer.id) do %>
+          <i class="fas fa-user"><span style="margin-left: 10px;">My page</span></i>
+        <% end %>
+      </li>
       <li class="about">
-        <%= link_to 'About', about_path %></li>
+        <%= link_to about_path do %>
+          <i class="fas fa-address-card"><span style="margin-left: 10px;">About</span></i>
+        <% end %>
+      </li>
       <li class="logout">
-        <%= link_to " Log out", destroy_customer_session_path, method: :delete %></li>
+        <%= link_to destroy_customer_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt"><span style="margin-left: 10px;">Log out</span></i>
+        <% end %>
+      </li>
   </ul>
     <% else %>
       <ul class="nav pull-right nav-pills">
 
-      <li class="cart">
-        <%= link_to 'Item', root_path %></li>
+      <li class="item">
+        <%= link_to root_path do %>
+          <i class="fas fa-birthday-cake"><span style="margin-left: 10px;">Item</span></i>
+        <% end %>
+      </li>
       <li class="about">
-        <%= link_to "About", about_path %></li>
+        <%= link_to about_path do %>
+          <i class="fas fa-address-card"><span style="margin-left: 10px;">About</span></i>
+        <% end %>
+      </li>
       <li class="login">
-        <%= link_to "Log in", new_customer_session_path %></li>
+        <%= link_to new_customer_session_path do %>
+          <i class="fas fa-sign-in-alt"><span style="margin-left: 10px;">Log in</span></i>
+        <% end %>
+      </li>
       <li class="signup">
-        <%= link_to "Sign up", new_customer_registration_path %></li>
+        <%= link_to new_customer_registration_path do %>
+          <i class="fas fa-user-plus"><span style="margin-left: 10px;">Sign up</span></i>
+        <% end %>
+      </li>
   </ul>
     <% end %>
 
-    <div style="position: absolute; right:10px; height: 40px; margin-top: -50px; ">
+    <div style="position: absolute; right:10px; height: 40px; margin-top: -30px; ">
       <%= form_with   class: "search__form" do |f| %>
       <%= f.text_field class: "search__form__input"%>
       <%= f.submit "検索" ,style:"line-height: normal;"%>
@@ -49,5 +73,5 @@
     font-family: inherit;
     font-size: inherit;
     line-height: normal;
-}
-  </style>
+  }
+</style>
